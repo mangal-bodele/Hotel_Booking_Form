@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}
+    <title>Title</title>
+{% endblock %}
+{% block content %}
+ <table class="border border-4 p-3 mt-5 m-auto col-8 text-center">
+     <thead class="p-3 mb-2 bg-dark text-white">
+        <tr>
+            <th>Id</th>
+            <th>Hotel Name</th>
+            <th>Person Name</th>
+            <th>address</th>
+            <th>Check IN</th>
+            <th>Check Out</th>
+            <th>Mobile NO.</th>
+            <th>Email</th>
+            <th colspan="2">Action</th>
+        </tr>
+     </thead>
+     <tbody class="p-3 mb-2 bg-warning text-dark">
+       {% for hotel in hotels %}
+            <tr>
+                <td>{{ hotel.id }}</td>
+                <td>{{ hotel.hotel_name }}</td>
+                <td>{{ hotel.person_name }}</td>
+                <td>{{ hotel.address }}</td>
+                <td>{{ hotel.check_in }}</td>
+                <td>{{ hotel.check_out }}</td>
+                <td>{{ hotel.phone }}</td>
+                <td>{{ hotel.email }}</td>
+
+                <td>
+                    <a href="{% url 'update_url' hotel.id %}">
+                        <button><i class="bi bi-pencil-square"></i>&nbspUpdate</button>
+                    </a>
+                </td>
+                <td>
+                    <a href="{% url 'cancel_url' hotel.id %}">
+                        <button><i class="bi bi-trash3-fill"></i>&nbspDelete</button>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+     </tbody>
+ </table>
+{% endblock %}
